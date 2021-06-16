@@ -1,0 +1,6 @@
+
+
+// ALL ACTION-TYPES HERE ===
+export const CREATE_REDUX_STORE = "CREATE_REDUX_STORE";
+export const ERROR = "ERROR";
+
