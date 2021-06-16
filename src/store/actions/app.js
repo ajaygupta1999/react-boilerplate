@@ -3,6 +3,11 @@ import  {
     ERROR
 } from "../actionTypes";
 
+import { config } from "../../constants";
+import { setTokenHeader , apiCall } from "../../services/utils";
+
+
+
 
 export const setStore = () => async (dispatch) => {
     try{
@@ -10,10 +15,36 @@ export const setStore = () => async (dispatch) => {
             name : "Ajay",
             surname : "Gupta"
         }
-        dispatch({ type : CREATE_REDUX_STORE , data });
+        dispatch({ type : CREATE_REDUX_STORE , data : data });
 
     }catch(err){
         console.log(err.message);
         dispatch({ type : ERROR });
     }
 }
+
+
+
+export const handleLogin = (data) => async (dispatch) => {
+    try{
+        console.log("data ==>" , data);
+        let backenddata = await apiCall("POST" , `${process.env.REACT_APP_SERVERURL}/login` , data); 
+        console.log(backenddata);
+        setTokenHeader(backenddata.token);
+        return backenddata.token;
+    }catch(err){
+        console.log(err);
+    }
+}
+
+
+export const handleVerifyToken = () => async (dispatch) => {
+    try{
+        let verifieddata = await apiCall('GET' , `${process.env.REACT_APP_SERVERURL}/verify/token`)
+        console.log(verifieddata);
+        return verifieddata;
+    }catch(err){
+        console.log(err);
+    }
+}
+

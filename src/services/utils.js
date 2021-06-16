@@ -10,7 +10,35 @@ export const setTokenHeader = (token) => {
 
 export const apiCall = async (method, path, data) => {
   try {
-      let res = await axios[method.toLowerCase()](path, data);
+      // let res = await axios[method.toLowerCase()](path, data);
+      let res;
+      let formData = new FormData();
+      if(method.toLowerCase() === "post"){
+        for (const [key, value] of Object.entries(data)) {
+          formData.append( key , value);
+        }
+        res = await axios({
+            method : method,
+            url : path,
+            mode : "cors",
+            data : formData,
+            header : {
+              "Content-type" : "application/json",
+            },
+        });
+        
+      }else{
+          res = await axios({
+            method : method,
+            url : path,
+            mode : "cors",
+            data : formData,
+            header : {
+              "Content-type" : "application/json",
+            },
+        });
+      }
+    
       return res.data;
   }catch(err){
       return err.response.data.error;
@@ -20,7 +48,7 @@ export const apiCall = async (method, path, data) => {
 
 export const apiUploadCall = async (method, path, data) => {
     let formData = new FormData();
-    console.log("Api Upload call is called => " , data);
+
     for (const [key, value] of Object.entries(data)) {
       formData.append( key , value);
     }
@@ -28,6 +56,7 @@ export const apiUploadCall = async (method, path, data) => {
     try{
         // This is for File Upload requests
         let res = await axios.post(path , formData , {
+            mode : "cors",
             headers : {
               'Content-type' : 'multipart/form-data'
             }
