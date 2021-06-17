@@ -48,3 +48,23 @@ export const handleVerifyToken = () => async (dispatch) => {
     }
 }
 
+
+
+export const handleSubmitBackend = (data) => async (dispatch) => {
+    try{
+       console.log("In actions");
+       dispatch({ type : "SET_LOADER" });
+       let data = {
+           name : "Ajdskbadsgsr",
+           key : "12345"
+       };
+       dispatch({ type : "LOAD_DATA" , data : data });
+       // let backenddata = await apiCall("POST" , `${process.env.REACT_APP_SERVERURL}/login` , data);
+    }catch(err){
+        console.log(err);
+    }
+}
+
+
+
+
