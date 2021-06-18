@@ -67,4 +67,10 @@ export const handleSubmitBackend = (data) => async (dispatch) => {
 
 
 
-
+export const handleAddPost = (obj) => async (dispatch) => {
+    try{
+        dispatch({  type : "ADD_POST" , data : obj });
+    }catch(err){
+        console.log(err);
+    }
+}

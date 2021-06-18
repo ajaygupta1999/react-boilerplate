@@ -7,7 +7,24 @@ import {
 
 
 let DEFAULT_STATE = {
-    data : {},
+    data : [{
+        name :  "bnsjbkjs",
+        author : "dafsggds",
+        post : "sfzdgsfsh",
+        body : "dfhsbhsbrg"
+    },
+    {
+        name :  "bnsjbkjs",
+        author : "dafsggds",
+        post : "sfzdgsfsh",
+        body : "dfhsbhsbrg"
+    },
+    {
+        name :  "bnsjbkjs",
+        author : "dafsggds",
+        post : "sfzdgsfsh",
+        body : "dfhsbhsbrg"
+    }],
     isFetching : false,
     isError : false,
 }
@@ -28,6 +45,9 @@ const app = ( state = DEFAULT_STATE , action ) => {
 
         case "LOAD_DATA":
             return { ...state, isFetching : false , data : action.data  }
+
+        case "ADD_POST":
+            return { ...state, data : [...state.data , action.data] }
 
         default:
             return state;

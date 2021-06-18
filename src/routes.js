@@ -2,6 +2,9 @@ import Home from './Home';
 import Login from "./Login";
 import Signup from './Signup';
 import Test from "./Test";
+import Addpost from "./Addpost";
+
+
 
 // Put your all routes here ===
 export default [
@@ -29,5 +32,11 @@ export default [
         component : Signup,
         exact : true,
         path : "/signup"
+    },
+    {
+        component : Addpost,
+        exact : true,
+        path : "/post"
+
     }
 ];
